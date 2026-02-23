@@ -57,6 +57,37 @@ Empfehlungen:
 - Bei öffentlichen oder geteilten Netzwerken auf `127.0.0.1` beschränken: `python3 usage_server.py --host 127.0.0.1`
 - Der Server gibt keine Credentials weiter — nur die Auslastungsprozentsätze
 
+## Autostart beim Login (macOS)
+
+Der Server kann als Launch Agent eingerichtet werden, sodass er nach jedem Login automatisch startet.
+
+1. Vorlage kopieren und Pfad anpassen:
+
+```bash
+cp com.local.claudetokenserver.plist ~/Library/LaunchAgents/
+```
+
+2. Öffne die Datei und ersetze `DEIN_BENUTZERNAME` durch deinen macOS-Benutzernamen.
+
+3. Launch Agent laden (startet auch sofort):
+
+```bash
+launchctl load ~/Library/LaunchAgents/com.local.claudetokenserver.plist
+```
+
+**Nützliche Befehle:**
+
+```bash
+# Status prüfen
+launchctl list | grep claudetokenserver
+
+# Logs ansehen
+tail -f /tmp/claudetokenserver.log
+
+# Deaktivieren
+launchctl unload ~/Library/LaunchAgents/com.local.claudetokenserver.plist
+```
+
 ## Funktionsweise
 
 1. **Keychain** – liest den OAuth-Token aus dem Keychain-Eintrag `Claude Code-credentials`

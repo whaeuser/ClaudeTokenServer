@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.local.claudetokenserver</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <!-- Pfad anpassen, falls das Repo woanders liegt -->
+        <string>/Users/DEIN_BENUTZERNAME/Entwicklung/ClaudeTokenServer/start_server.sh</string>
+    </array>
+
+    <!-- Beim Login automatisch starten -->
+    <key>RunAtLoad</key>
+    <true/>
+
+    <!-- Bei Absturz neu starten -->
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/claudetokenserver.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/claudetokenserver.err</string>
+</dict>
+</plist>

@@ -146,11 +146,15 @@ class UsageHandler(BaseHTTPRequestHandler):
 def main():
     parser = argparse.ArgumentParser(description="ClaudeTokenServer – lokaler Usage-API-Server")
     parser.add_argument("--port", type=int, default=8765, help="Port (Standard: 8765)")
-    parser.add_argument("--host", default="127.0.0.1", help="Host (Standard: 127.0.0.1)")
+    parser.add_argument("--host", default="0.0.0.0", help="Host (Standard: 0.0.0.0 – im lokalen Netz erreichbar)")
     args = parser.parse_args()
 
     server = HTTPServer((args.host, args.port), UsageHandler)
+    import socket
+    local_ip = socket.gethostbyname(socket.gethostname())
     print(f"ClaudeTokenServer gestartet auf http://{args.host}:{args.port}")
+    if args.host == "0.0.0.0":
+        print(f"  Im lokalen Netz erreichbar unter: http://{local_ip}:{args.port}")
     print(f"  GET /usage        – Nutzungsdaten (Cache: {CACHE_TTL_SECONDS}s)")
     print(f"  GET /usage/fresh  – Nutzungsdaten (kein Cache)")
     print(f"  GET /health       – Server-Status")

@@ -1,0 +1,3 @@
+# Keine externen Abhängigkeiten – nur Python-Standardbibliothek
+# Hier künftige Packages eintragen, z. B.:
+# requests>=2.31

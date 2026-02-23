@@ -48,6 +48,15 @@ PORT=9000 ./start_server.sh
 }
 ```
 
+## Sicherheitshinweis
+
+Der Server lauscht standardmäßig auf `0.0.0.0` und ist damit **ohne Authentifizierung im gesamten lokalen Netz erreichbar**. Jedes Gerät im selben WLAN/LAN kann die Nutzungsdaten abrufen.
+
+Empfehlungen:
+- Nur im eigenen, vertrauenswürdigen Heimnetz betreiben
+- Bei öffentlichen oder geteilten Netzwerken auf `127.0.0.1` beschränken: `python3 usage_server.py --host 127.0.0.1`
+- Der Server gibt keine Credentials weiter — nur die Auslastungsprozentsätze
+
 ## Funktionsweise
 
 1. **Keychain** – liest den OAuth-Token aus dem Keychain-Eintrag `Claude Code-credentials`
